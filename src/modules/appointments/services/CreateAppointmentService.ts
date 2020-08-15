@@ -39,10 +39,6 @@ class CreateAppointmentService {
             );
         }
 
-        if (getHours(appointmentDate) < 8 || getHours(appointmentDate) > 17) {
-            throw new AppError('Appointment hour must be between 8am and 17pm');
-        }
-
         if (user_id === provider_id) {
             throw new AppError("You can't create an appointment with yourself");
         }
@@ -54,6 +50,14 @@ class CreateAppointmentService {
 
         if (findAppointmentInSameDate) {
             throw new AppError('This appointment is already booked');
+        }
+
+        if (date.getDay() === 0 || date.getDay() === 6) {
+            throw new AppError("You can't create an appointment at weekends");
+        }
+
+        if (getHours(appointmentDate) < 8 || getHours(appointmentDate) > 17) {
+            throw new AppError('Appointment hour must be between 8am and 17pm');
         }
 
         const appointment = await this.appointmentsRepository.create({
