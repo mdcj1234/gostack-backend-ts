@@ -12,6 +12,7 @@ interface IRequest {
     email: string;
     old_password?: string;
     password?: string;
+    password_confirmation?: string;
 }
 
 @injectable()
