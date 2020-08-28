@@ -1,7 +1,6 @@
 import multer, { StorageEngine } from 'multer';
 import path from 'path';
 import crypto from 'crypto';
-import { stringType } from 'aws-sdk/clients/iam';
 
 const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 const uploadsFolder = path.resolve(tmpFolder, 'uploads');
